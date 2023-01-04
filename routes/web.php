@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [SessionsController::class, 'viewLogin'])->name('login.index');
+Route::get('/', [SessionsController::class, 'viewLogin'])->name('/');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destroy');
+    Route::get('/setting', [SettingsController::class, 'viewSetting'])->name('setting.index');
 });

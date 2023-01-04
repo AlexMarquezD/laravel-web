@@ -8,10 +8,19 @@
     <title>@yield('title') | AdminVvo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
     @livewireStyles
+    <style>
+        .navbar .container-avatar{
+            width: 35px;
+            height: 35px;
+            border-radius: 900px;
+            overflow: hidden;
+            margin-left: 20px;
+        }
+        .navbar img {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,13 +37,27 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('/') }}">
+                                {{ __('home') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                {{ __('upload image') }}
+                            </a>
+                        </li>
+                        <li>
+                            &nbsp;
+                        </li>
+                        <li>
+                            @if (auth()->user()->image)
+                                <img class="container-avatar" src="{{ $imageUrl ?? auth()->user()->image }}" alt="">
+                            @endif
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -45,10 +68,12 @@
                                 <a class="dropdown-item" href="{{ route('login.destroy') }}">
                                     {{ __('Logout') }}
                                 </a>
-
-                                {{-- <form id="logout-form" href="{{ route('login.destroy') }}" class="d-none">
-                                    @csrf
-                                </form> --}}
+                                <a class="dropdown-item" href="">
+                                    {{ __('My profile') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('setting.index') }}">
+                                    {{ __('Setting') }}
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -62,7 +87,14 @@
 
         @yield('modals')
     </div>
+    @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
 
 </html>
