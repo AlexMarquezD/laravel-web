@@ -49,9 +49,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'images' => [
+        'albums' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/images'),
+            'root' => storage_path('app/public/albums'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

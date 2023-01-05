@@ -10,13 +10,14 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     @livewireStyles
     <style>
-        .navbar .container-avatar{
+        .navbar .container-avatar {
             width: 35px;
             height: 35px;
             border-radius: 900px;
             overflow: hidden;
             margin-left: 20px;
         }
+
         .navbar img {
             width: 100%;
         }
@@ -46,7 +47,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+
+                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalImage">
                                 {{ __('upload image') }}
                             </a>
                         </li>
@@ -55,7 +57,8 @@
                         </li>
                         <li>
                             @if (auth()->user()->image)
-                                <img class="container-avatar" src="{{ $imageUrl ?? auth()->user()->image }}" alt="">
+                                <img class="container-avatar" src="{{ $imageUrl ?? auth()->user()->image }}"
+                                    alt="">
                             @endif
                         </li>
                         <li class="nav-item dropdown">
@@ -83,18 +86,16 @@
 
         <main class="py-4">
             @yield('content')
+            @livewire('image.modals.image')
         </main>
-
-        @yield('modals')
     </div>
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script></script>
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-
 
 </html>
