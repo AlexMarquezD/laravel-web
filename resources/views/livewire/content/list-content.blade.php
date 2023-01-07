@@ -7,7 +7,9 @@
                 </div>
                 <div class="name">
                     {{ $image->user->name . ' ' . $image->user->surname }}
-                    <span>{{ ' | @' . $image->user->nick }}</span>
+                    <a href="{{ route('profile.index', ['user' => $image->user->id]) }}">
+                        <span>{{ ' | @' . $image->user->nick }}</span>
+                    </a>
                 </div>
                 <div class="date row justify-content-end">
                     {{ \Carbon\Carbon::parse($image->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}
@@ -16,7 +18,8 @@
 
             <div class="card-body">
                 <div>
-                    <img class="image" src="{{ $image->image_path }}" alt="">
+                    <a href="{{ route('image.index', ['image' => $image->id]) }}"><img class="image"
+                            src="{{ $image->image_path }}" alt=""></a>
                 </div>
                 <div class="description">
                     <p>{{ $image->description }}</p>
@@ -24,13 +27,14 @@
                 <div class="like-comment row">
                     @livewire('content.like', ['image' => $image->id])
                     <div class="comment col-md-8" style="padding-left: 0;">
-                        <button class="border form-control">
-                            <p>comment ({{ count($image->comments) }})</p>
-                        </button>
+                        <a href="{{ route('image.index', ['image' => $image->id]) }}">
+                            <button class="border form-control">
+                                <p>comment ({{ count($image->comments) }})</p>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
-
         </div>
     @endforeach
     <style>
@@ -61,6 +65,10 @@
             margin: 5px 0 0 20px;
             font-weight: bold;
             float: left;
+        }
+
+        a {
+            text-decoration: none
         }
 
         .date {

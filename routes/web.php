@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +22,6 @@ Route::get('/', [SessionsController::class, 'viewLogin'])->name('/');
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destroy');
     Route::get('/setting', [SettingsController::class, 'viewSetting'])->name('setting.index');
+    Route::get('/profile/{user}', [ProfileController::class, 'viewProfile'])->name('profile.index');
+    Route::get('/image/{image}', [ImageController::class, 'viewImage'])->name('image.index');
 });

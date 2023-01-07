@@ -71,7 +71,8 @@
                                 <a class="dropdown-item" href="{{ route('login.destroy') }}">
                                     {{ __('Logout') }}
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item"
+                                    href="{{ route('profile.index', ['user' => Auth::user()->id]) }}">
                                     {{ __('My profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('setting.index') }}">
@@ -86,8 +87,9 @@
 
         <main class="py-4">
             @yield('content')
-            @livewire('image.modals.image')
         </main>
+        @livewire('image.modals.image')
+
     </div>
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

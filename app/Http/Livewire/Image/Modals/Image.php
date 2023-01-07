@@ -16,6 +16,7 @@ class Image extends Component
 
     public $description = '';
     public $image = null;
+    public $iteration = 0;
 
     public function render()
     {
@@ -49,6 +50,7 @@ class Image extends Component
 
         $this->alert('success', 'Saved image!!');
         $this->image = null;
+        $this->iteration ++;
         $this->reset('description');
     }
 }

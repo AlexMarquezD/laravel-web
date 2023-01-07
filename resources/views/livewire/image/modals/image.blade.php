@@ -1,4 +1,5 @@
-<div class="modal fade" id="modalImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore>
+<div class="modal fade" id="modalImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,7 +15,7 @@
                         {{ __('image') }}
                     </label>
                     <div class="col-md-9">
-                        <input wire:click="state" id="image" type="file" wire:model="image"
+                        <input id="upload{{$iteration}}" type="file" wire:model="image"
                             class="form-control @error('image') is-invalid @enderror" name="image" required
                             autocomplete="image" autofocus>
                     </div>
@@ -30,7 +31,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" wire:click="saveImage">save</button>
+                <button type="button" class="btn btn-primary" wire:click="saveImage" id="save">save</button>
             </div>
         </div>
     </div>
