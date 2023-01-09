@@ -25,7 +25,24 @@
                     <p>{{ $image->description }}</p>
                 </div>
                 <div class="like-comment row">
-                    @livewire('content.like', ['image' => $image->id])
+                    <div class="col-md-4" style="padding-right: 0;">
+                        <button class="like border form-control" wire:click="updateLike({{$image->id}})">
+                            @if ($image->likes->where('image_id', $image->id)->where('user_id', auth()->user()->id)->count())
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#0000ff">
+                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                    <path
+                                        d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+                                </svg>
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                    <path
+                                        d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+                                </svg>
+                            @endif
+                            Like ({{$image->likes->count()}})
+                        </button>
+                    </div>
                     <div class="comment col-md-8" style="padding-left: 0;">
                         <a href="{{ route('image.index', ['image' => $image->id]) }}">
                             <button class="border form-control">

@@ -52,5 +52,6 @@ class Image extends Component
         $this->image = null;
         $this->iteration ++;
         $this->reset('description');
+        $this->emitTo('content.list-content', 'render');
     }
 }
